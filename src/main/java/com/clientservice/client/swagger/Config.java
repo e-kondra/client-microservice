@@ -1,7 +1,5 @@
 package com.clientservice.client.swagger;
 
-import com.clientservice.client.swagger.DescriptionVariables;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
