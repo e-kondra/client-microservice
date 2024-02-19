@@ -1,4 +1,4 @@
-package com.clientservice.client.model;
+package com.clientservice.clientservice.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -43,7 +43,7 @@ public class Client {
 
     @ApiModelProperty(notes = "Indication of live client")
     @NonNull
-    private boolean isActive;
+    private Boolean isActive;
 
     @ApiModelProperty(notes = "Notes, comments of client")
     private String comment;

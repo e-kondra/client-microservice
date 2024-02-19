@@ -1,4 +1,4 @@
-package com.clientservice.client.swagger;
+package com.clientservice.clientservice.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

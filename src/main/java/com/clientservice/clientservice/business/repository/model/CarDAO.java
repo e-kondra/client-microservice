@@ -1,6 +1,5 @@
-package com.clientservice.client.business.repository.model;
+package com.clientservice.clientservice.business.repository.model;
 
-import com.clientservice.client.model.Brand;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

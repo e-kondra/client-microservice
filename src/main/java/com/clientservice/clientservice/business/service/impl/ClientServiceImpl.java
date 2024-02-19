@@ -1,6 +1,6 @@
-package com.clientservice.client.business.service.impl;
+package com.clientservice.clientservice.business.service.impl;
 
-import com.clientservice.client.business.service.ClientService;
+import com.clientservice.clientservice.business.service.ClientService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 

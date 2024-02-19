@@ -1,4 +1,4 @@
-package com.clientservice.client.business.repository.model;
+package com.clientservice.clientservice.business.repository.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,7 +48,7 @@ public class ClientDAO {
     @OneToMany(mappedBy = "clientId", fetch = FetchType.LAZY)
     private List<CarDAO> carIds;
 
-    @OneToOne(mappedBy = "clientId", cascade = CascadeType.REMOVE, optional = true)
+    @OneToOne(mappedBy = "clientId", cascade = CascadeType.REMOVE)
     private CompanyDetailsDAO CompanyDetailsId;
 
 }

@@ -1,4 +1,4 @@
-package com.clientservice.client.model;
+package com.clientservice.clientservice.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

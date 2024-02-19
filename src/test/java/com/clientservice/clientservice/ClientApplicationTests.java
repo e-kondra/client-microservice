@@ -1,4 +1,4 @@
-package com.clientservice.client;
+package com.clientservice.clientservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

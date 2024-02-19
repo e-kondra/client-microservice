@@ -1,4 +1,4 @@
-package com.clientservice.client.business.repository.model;
+package com.clientservice.clientservice.business.repository.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

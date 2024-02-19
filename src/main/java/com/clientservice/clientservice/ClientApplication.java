@@ -1,4 +1,4 @@
-package com.clientservice.client;
+package com.clientservice.clientservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

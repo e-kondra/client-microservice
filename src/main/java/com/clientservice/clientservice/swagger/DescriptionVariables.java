@@ -1,4 +1,4 @@
-package com.clientservice.client.swagger;
+package com.clientservice.clientservice.swagger;
 
 public class DescriptionVariables {
 
