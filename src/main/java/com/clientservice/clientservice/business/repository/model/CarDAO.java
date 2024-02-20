@@ -39,4 +39,7 @@ public class CarDAO {
     @JoinColumn(name = "client_id")
     private ClientDAO clientId;
 
+    public CarDAO(Long carId) {
+        this.id = carId;
+    }
 }

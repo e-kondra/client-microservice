@@ -102,7 +102,7 @@ class BrandServiceImplTest {
         verify(brandRepository, times(1)).save(brandDAO);
     }
     @Test
-    void SaveBrandInvalidDuplicate() throws Exception {
+    void SaveBrandInvalidDuplicate() {
         Brand brandForSaving = new Brand(null, "TOYOTA");
         when(brandRepository.findAll()).thenReturn(brandDAOS);
         assertThrows(HttpClientErrorException.class, () -> service.saveBrand(brandForSaving));
@@ -116,7 +116,7 @@ class BrandServiceImplTest {
     }
 
     @Test
-    void deleteBrandByIdInvalid() throws Exception {
+    void deleteBrandByIdInvalid() {
         doThrow(new IllegalArgumentException()).when(brandRepository).deleteById(anyLong());
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> service.deleteBrandById(anyLong()));

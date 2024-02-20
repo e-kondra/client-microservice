@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 
 @Mapper(componentModel = "spring")
-
 public interface BrandMapStructMapper {
 
     BrandDAO brandToBrandDAO(Brand brand);

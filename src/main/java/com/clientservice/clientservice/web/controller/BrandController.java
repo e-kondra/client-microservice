@@ -53,7 +53,8 @@ public class BrandController {
         List<Brand> brandList = brandService.findAllBrands();
         if (brandList.isEmpty()) {
             log.warn("Brand list is empty! {}", brandList);
-            //return ResponseEntity.notFound().build();
+        } else {
+            log.debug("Brand list is found. Size: {}", brandList::size);
         }
         log.debug("Brand list is found. Size: {}", brandList::size);
         return ResponseEntity.ok(brandList);
@@ -69,7 +70,7 @@ public class BrandController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
             @ApiResponse(code = 500, message = "Server error")})
-    public ResponseEntity<Brand> fiBrandById(@ApiParam(value = "id of the brand", required = true)
+    public ResponseEntity<Brand> findBrandById(@ApiParam(value = "id of the brand", required = true)
                                                      @NonNull @PathVariable Long id) {
         log.info("Find Brand by passing ID of brand, where brand ID is :{} ", id);
         Optional<Brand> brand = (brandService.findBrandById(id));
@@ -147,6 +148,7 @@ public class BrandController {
         log.info("Delete Employee by passing ID, where ID is:{}", id);
         Optional<Brand> brand = brandService.findBrandById(id);
         if (brand.isEmpty()) {
+            System.out.println("brand.isEmpty");
             log.warn("Brand for delete with id {} is not found.", id);
             return ResponseEntity.notFound().build();
         }

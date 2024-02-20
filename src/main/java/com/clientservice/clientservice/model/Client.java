@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @ApiModel(description = "Model of client data ")
 @Component
@@ -45,10 +47,8 @@ public class Client {
     @NonNull
     private Boolean isActive;
 
-    @ApiModelProperty(notes = "Notes, comments of client")
-    private String comment;
+    @ApiModelProperty(notes = "client's cars")
+    private List<Long> carIds;
 
-    @ApiModelProperty(notes = "Company's details for legal entity client")
-    private CompanyDetails companyDetails;
 
 }

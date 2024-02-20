@@ -31,4 +31,8 @@ public class Car {
     @ApiModelProperty(notes = "Client of the car")
     @NonNull
     private Client client;
+
+    public Car(Long carDAO) {
+        this.id = carDAO;
+    }
 }
