@@ -25,6 +25,9 @@ public class Client {
     private static final String STRING_PATTERN = "^[a-zA-Z\\s]*$";
     private static final String EMAIL_PATTERN = "\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
 
+    @ApiModelProperty(notes = "The unique id of the client")
+    private Long id;
+
     @ApiModelProperty(notes = "Name of training")
     @NonNull
     @NotEmpty
