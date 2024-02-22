@@ -36,6 +36,6 @@ public class CompanyDetailsDAO {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
-    private ClientDAO clientId;
+    private ClientDAO client;
 
 }

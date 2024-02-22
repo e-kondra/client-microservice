@@ -48,7 +48,7 @@ public class ClientDAO {
     @OneToMany(mappedBy = "clientId", fetch = FetchType.LAZY)
     private List<CarDAO> carIds;
 
-    @OneToOne(mappedBy = "clientId", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "client", cascade = CascadeType.REMOVE)
     private CompanyDetailsDAO CompanyDetailsId;
 
 }

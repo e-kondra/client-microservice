@@ -2,6 +2,7 @@ package com.clientservice.clientservice.web.controller;
 
 import com.clientservice.clientservice.business.service.ClientService;
 import com.clientservice.clientservice.model.Client;
+import com.clientservice.clientservice.swagger.HTMLResponseMessages;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -80,11 +81,10 @@ public class ClientController {
             notes = "Provide an id to search specific client in database",
             response = Client.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<Client> findClientById(@ApiParam(value = "id of the client", required = true)
                                                  @NonNull @PathVariable Long id) {
         log.info("Find Client by passing ID of client, where client ID is :{} ", id);

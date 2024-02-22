@@ -1,6 +1,5 @@
 package com.clientservice.clientservice.web.controller;
 
-import com.clientservice.clientservice.business.service.BrandService;
 import com.clientservice.clientservice.business.service.impl.BrandServiceImpl;
 import com.clientservice.clientservice.model.Brand;
 import com.clientservice.clientservice.swagger.DescriptionVariables;
@@ -51,11 +50,8 @@ public class BrandController {
     public ResponseEntity<List<Brand>> findAllBrands() {
         log.info("Retrieve list of Brands");
         List<Brand> brandList = brandService.findAllBrands();
-        if (brandList.isEmpty()) {
-            log.warn("Brand list is empty! {}", brandList);
-        } else {
-            log.debug("Brand list is found. Size: {}", brandList::size);
-        }
+        if (brandList.isEmpty()) log.warn("Brand list is empty! {}", brandList);
+        else log.debug("Brand list is found. Size: {}", brandList::size);
         log.debug("Brand list is found. Size: {}", brandList::size);
         return ResponseEntity.ok(brandList);
     }
@@ -74,11 +70,8 @@ public class BrandController {
                                                      @NonNull @PathVariable Long id) {
         log.info("Find Brand by passing ID of brand, where brand ID is :{} ", id);
         Optional<Brand> brand = (brandService.findBrandById(id));
-        if (brand.isEmpty()) {
-            log.warn("Brand with id {} is not found.", id);
-        } else {
-            log.debug("Brand with id {} is found: {}", id, brand);
-        }
+        if (brand.isEmpty()) log.warn("Brand with id {} is not found.", id);
+        else log.debug("Brand with id {} is found: {}", id, brand);
         return brand.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -104,8 +97,6 @@ public class BrandController {
         log.debug("New brand is created: {}", brand);
         return new ResponseEntity<>(brandSaved, HttpStatus.CREATED);
     }
-
-
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Updates the brand by id",
@@ -145,7 +136,7 @@ public class BrandController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteBrandById(@ApiParam(value = "The id of the brand", required = true)
                                                    @NonNull @PathVariable Long id) {
-        log.info("Delete Employee by passing ID, where ID is:{}", id);
+        log.info("Delete Brand by passing ID, where ID is:{}", id);
         Optional<Brand> brand = brandService.findBrandById(id);
         if (brand.isEmpty()) {
             System.out.println("brand.isEmpty");
@@ -153,7 +144,7 @@ public class BrandController {
             return ResponseEntity.notFound().build();
         }
         brandService.deleteBrandById(id);
-        log.debug("Employee with id {} is deleted: {}", id, brand);
+        log.debug("Brand with id {} is deleted: {}", id, brand);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

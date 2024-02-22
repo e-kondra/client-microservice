@@ -2,7 +2,6 @@ package com.clientservice.clientservice.business.mappers;
 
 import com.clientservice.clientservice.business.repository.model.CarDAO;
 import com.clientservice.clientservice.business.repository.model.ClientDAO;
-import com.clientservice.clientservice.model.Car;
 import com.clientservice.clientservice.model.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
