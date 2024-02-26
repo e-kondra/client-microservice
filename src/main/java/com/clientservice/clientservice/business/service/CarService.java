@@ -1,7 +1,6 @@
 package com.clientservice.clientservice.business.service;
 
 import com.clientservice.clientservice.model.Car;
-import com.clientservice.clientservice.model.Client;
 
 import java.util.List;
 import java.util.Optional;

@@ -32,7 +32,7 @@ public class CompanyDetailsServiceImpl implements CompanyDetailsService {
     @Override
     public Optional<CompanyDetails> findCompanyDetailsByClient(Client client) {
         ClientDAO clientDAO = clientMapper.clientToClientDAO(client);
-        Optional<CompanyDetails> detailsByClient  = detailsRepository.findByClient(clientDAO).flatMap(details ->
+        Optional<CompanyDetails> detailsByClient = detailsRepository.findByClient(clientDAO).flatMap(details ->
                 Optional.ofNullable(detailsMapper.companyDetailsDAOToCompanyDetails(details)));
         log.info("CompanyDetails CV with clients id {} is {}", client.getId(), detailsByClient);
         return detailsByClient;

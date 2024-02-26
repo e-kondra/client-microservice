@@ -3,7 +3,9 @@ package com.clientservice.clientservice.business.service.impl;
 import com.clientservice.clientservice.business.mappers.CarMapStructMapper;
 import com.clientservice.clientservice.business.mappers.ClientMapStructMapper;
 import com.clientservice.clientservice.business.repository.CarRepository;
+import com.clientservice.clientservice.business.repository.ClientRepository;
 import com.clientservice.clientservice.business.repository.model.CarDAO;
+import com.clientservice.clientservice.business.repository.model.ClientDAO;
 import com.clientservice.clientservice.business.service.CarService;
 import com.clientservice.clientservice.business.service.ClientService;
 import com.clientservice.clientservice.model.Car;
@@ -24,6 +26,9 @@ public class CarServiceImpl implements CarService {
     CarRepository carRepository;
 
     @Autowired
+    ClientRepository clientRepository;
+
+    @Autowired
     CarMapStructMapper carMapper;
 
     @Autowired
@@ -41,8 +46,8 @@ public class CarServiceImpl implements CarService {
     }
 
         public List<Car> findAllCarsByClientId(Long clientId) {
-        Optional<Client> client = clientService.findClientById(clientId);
-        List<CarDAO> carDAOList = carRepository.findByClientId(clientMapper.clientToClientDAO(client.get()));
+        Optional<ClientDAO> client = clientRepository.findById(clientId);
+        List<CarDAO> carDAOList = carRepository.findByClientId(client.get());
         log.info("Get client list. Size is: {}", carDAOList::size);
         return carDAOList.stream().map(carMapper::carDAOToCar).collect(Collectors.toList());
     }

@@ -1,6 +1,5 @@
 package com.clientservice.clientservice.web.controller;
 
-import com.clientservice.clientservice.business.service.BrandService;
 import com.clientservice.clientservice.business.service.impl.BrandServiceImpl;
 import com.clientservice.clientservice.model.Brand;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<ClientDAO, Long>{
 
-    public List<ClientDAO> findByIsActiveTrue();
+    List<ClientDAO> findByIsActiveTrue();
 
 }

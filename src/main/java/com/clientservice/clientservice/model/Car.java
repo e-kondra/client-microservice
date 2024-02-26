@@ -32,7 +32,4 @@ public class Car {
     @NonNull
     private Client client;
 
-    public Car(Long carDAO) {
-        this.id = carDAO;
-    }
 }

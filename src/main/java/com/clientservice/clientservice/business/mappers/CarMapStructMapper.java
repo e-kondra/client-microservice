@@ -1,12 +1,10 @@
 package com.clientservice.clientservice.business.mappers;
 
 import com.clientservice.clientservice.business.repository.model.CarDAO;
-import com.clientservice.clientservice.business.repository.model.ClientDAO;
 import com.clientservice.clientservice.model.Car;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring", uses = {
         BrandMapStructMapper.class,
