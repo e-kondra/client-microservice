@@ -54,9 +54,7 @@ public class CompanyDetailsController {
                                                                        @NonNull @PathVariable Long id) {
         log.info("Find Company Details by passing ID of Company Details , where Company Details ID is :{} ", id);
         Optional<CompanyDetails> companyDetails = detailsService.findCompanyDetailsById(id);
-        if (companyDetails.isEmpty()) {
-            log.warn("Company Details by id {} is not found.", id);
-        }
+        if (companyDetails.isEmpty()) log.warn("Company Details by id {} is not found.", id);
         else log.debug("Company Details with id {} is found: {}", id, companyDetails);
         return companyDetails.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -78,10 +76,10 @@ public class CompanyDetailsController {
             return ResponseEntity.notFound().build();
         }
         else log.debug("Client with id {} is found: {}", id, client);
+
         Optional<CompanyDetails> companyDetails = detailsService.findCompanyDetailsByClient(client.get());
-        if (companyDetails.isEmpty()) {
-            log.warn("CompanyDetails by client id {} is not found.", id);
-        }
+
+        if (companyDetails.isEmpty()) log.warn("CompanyDetails by client id {} is not found.", id);
         else log.debug("CompanyDetails with client id {} is found: {}", id, companyDetails);
         return companyDetails.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.ok(null));
     }

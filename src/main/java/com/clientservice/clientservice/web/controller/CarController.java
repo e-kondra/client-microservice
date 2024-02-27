@@ -2,6 +2,7 @@ package com.clientservice.clientservice.web.controller;
 
 import com.clientservice.clientservice.business.service.CarService;
 import com.clientservice.clientservice.model.Car;
+import com.clientservice.clientservice.model.CompanyDetails;
 import com.clientservice.clientservice.swagger.DescriptionVariables;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -108,13 +109,13 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Car> saveCar(@Valid @RequestBody Car car, BindingResult bindingResult) throws Exception {
         log.info("Create new Car by passing : {}", car);
-        try { Car carSaved = carService.saveCar(car);
-            log.info("Car is created: {}", carSaved);
-            return new ResponseEntity<>(carSaved, HttpStatus.CREATED);
-        } catch (HttpClientErrorException.Conflict e) {
-            log.error("Car creation error: {}", HttpStatus.CONFLICT);
-            return ResponseEntity.status(409).build();
+        if (bindingResult.hasErrors()) {
+            log.error("New company details is not created: error {}", bindingResult);
+            return ResponseEntity.badRequest().build();
         }
+        Car carSaved = carService.saveCar(car);
+        log.info("Car is created: {}", carSaved);
+        return new ResponseEntity<>(carSaved, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

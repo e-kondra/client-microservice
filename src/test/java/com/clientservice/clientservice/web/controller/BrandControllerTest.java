@@ -140,6 +140,23 @@ class BrandControllerTest {
     }
 
     @Test
+    void updateBrandByIdWithInvalidBindingResult() throws Exception {
+        Brand brand = createBrand();
+        brand.setName("");
+
+        when(service.findBrandById(brand.getId())).thenReturn(Optional.of(brand));
+
+        ResultActions mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .put(URL + "/1")
+                        .content(asJsonString(brand))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+
+        verify(service, times(0)).saveBrand(brand);
+    }
+
+    @Test
     void testUpdateBrandByIdInvalid() throws Exception {
         Brand brand = createBrand();
         brand.setId(null);
@@ -173,14 +190,12 @@ class BrandControllerTest {
 
     @Test
     void deleteBrandByIdInvalid() throws Exception {
-        Optional<Brand> optionalBrand = Optional.of(createBrand());
-        optionalBrand.get().setId(null);
 
-        when(service.findBrandById(null)).thenReturn(optionalBrand);
+        when(service.findBrandById(anyLong())).thenReturn(Optional.empty());
 
         ResultActions mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                        .delete(URL + null)
-                        .content(asJsonString(optionalBrand))
+                        .delete(URL + "/1")
+                        .content(asJsonString(null))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());

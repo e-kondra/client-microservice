@@ -139,7 +139,6 @@ public class BrandController {
         log.info("Delete Brand by passing ID, where ID is:{}", id);
         Optional<Brand> brand = brandService.findBrandById(id);
         if (brand.isEmpty()) {
-            System.out.println("brand.isEmpty");
             log.warn("Brand for delete with id {} is not found.", id);
             return ResponseEntity.notFound().build();
         }

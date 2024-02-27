@@ -140,13 +140,18 @@ class CarControllerTest {
     }
     @Test
     void saveCarInvalid() throws Exception{
+        Car car = createCar();
+//        Brand brand = null;
+//        car.setBrand(brand);
 
-        when(service.saveCar(null)).thenThrow(new HttpClientErrorException(HttpStatus.CONFLICT));
-        try {
-            mockMvc.perform(get(URL));
-        } catch (Exception e) {
-            assertEquals("409 CONFLICT", e.getMessage());
-        }
+        when(service.saveCar(car)).thenReturn(null);
+        ResultActions mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .post(URL)
+                        .content(asJsonString(car))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+        verify(service, times(0)).saveCar(car);
     }
 
     @Test
