@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -107,13 +108,13 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Car> saveCar(@Valid @RequestBody Car car, BindingResult bindingResult) throws Exception {
         log.info("Create new Car by passing : {}", car);
-        if (bindingResult.hasErrors()) {
-            log.error("New car is not created: error {}", bindingResult);
-            return ResponseEntity.badRequest().build();
+        try { Car carSaved = carService.saveCar(car);
+            log.info("Car is created: {}", carSaved);
+            return new ResponseEntity<>(carSaved, HttpStatus.CREATED);
+        } catch (HttpClientErrorException.Conflict e) {
+            log.error("Car creation error: {}", HttpStatus.CONFLICT);
+            return ResponseEntity.status(409).build();
         }
-        Car carSaved = carService.saveCar(car);
-        log.debug("New car is created: {}", car);
-        return new ResponseEntity<>(carSaved, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -152,11 +153,11 @@ public class CarController {
             @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
             @ApiResponse(code = 500, message = "Server error")})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> deleteEmployeeById(@ApiParam(value = "The id of the car", required = true)
+    public ResponseEntity<Void> deleteCarById(@ApiParam(value = "The id of the car", required = true)
                                                    @NonNull @PathVariable Long id) {
         log.info("Delete Car by passing ID, where ID is:{}", id);
         Optional<Car> car = carService.findCarById(id);
-        if (!(car.isPresent())) {
+        if (!car.isPresent()) {
             log.warn("Car for delete with id {} is not found.", id);
             return ResponseEntity.notFound().build();
         }

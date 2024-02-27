@@ -138,7 +138,7 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         }
         clientService.deactivateClient(client.get());
-        log.debug("Client with id {} is deactivated: {}", id, client);
+        log.debug("Client with id {} is deactivated: {}", id, client.get());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
