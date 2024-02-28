@@ -1,6 +1,5 @@
 package com.clientservice.clientservice.web.controller;
 
-
 import com.clientservice.clientservice.business.service.impl.ClientServiceImpl;
 import com.clientservice.clientservice.business.service.impl.CompanyDetailsServiceImpl;
 import com.clientservice.clientservice.model.Client;

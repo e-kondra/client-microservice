@@ -3,6 +3,7 @@ package com.clientservice.clientservice.web.controller;
 import com.clientservice.clientservice.business.service.impl.BrandServiceImpl;
 import com.clientservice.clientservice.model.Brand;
 import com.clientservice.clientservice.swagger.DescriptionVariables;
+import com.clientservice.clientservice.swagger.HTMLResponseMessages;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -42,11 +43,9 @@ public class BrandController {
             notes = "Returns the entire list of brands",
             response = Brand.class, responseContainer = "List")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = Brand.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<List<Brand>> findAllBrands() {
         log.info("Retrieve list of Brands");
         List<Brand> brandList = brandService.findAllBrands();
@@ -61,11 +60,10 @@ public class BrandController {
             notes = "Provide an id to search specific brand in database",
             response = Brand.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<Brand> findBrandById(@ApiParam(value = "id of the brand", required = true)
                                                      @NonNull @PathVariable Long id) {
         log.info("Find Brand by passing ID of brand, where brand ID is :{} ", id);
@@ -80,12 +78,10 @@ public class BrandController {
             notes = "If provided valid brand, saves it",
             response = Brand.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The brand is successfully saved"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 201, message = HTMLResponseMessages.HTTP_201),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Brand> saveBrand(@Valid @RequestBody Brand brand, BindingResult bindingResult) throws Exception {
         log.info("Create new Brand by passing : {}", brand);
@@ -103,12 +99,10 @@ public class BrandController {
             notes = "Updates the brand if provided id exists",
             response = Brand.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The brand is successfully updated"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Brand> updateBrandById(@ApiParam(value = "id of the brand", required = true)
                                                     @NonNull @PathVariable Long id,
@@ -128,11 +122,9 @@ public class BrandController {
             notes = "Deletes the brand if provided id exists",
             response = Brand.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The brand is successfully deleted"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 204, message = HTMLResponseMessages.HTTP_204_WITHOUT_DATA),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteBrandById(@ApiParam(value = "The id of the brand", required = true)
                                                    @NonNull @PathVariable Long id) {

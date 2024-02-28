@@ -31,12 +31,14 @@ public class Config {
     private Docket appendTags(Docket docket) {
         return docket.tags(
                 new Tag(DescriptionVariables.CLIENT,
-                        "Used to get, create, update and delete clients"));
-//                new Tag(DescriptionVariables.TRAINING,
-//                        "Controller used to get, create, update and delete trainings"),
-//                new Tag(DescriptionVariables.TRAINING_DETAILS,
-//                        "Controller used to get, create, update and delete training details")
-//        );
+                        "Used to get, create, update and delete clients"),
+                new Tag(DescriptionVariables.COMPANY_DETAILS,
+                        "Controller used to get, create, update and company details"),
+                new Tag(DescriptionVariables.BRAND,
+                        "Controller used to get, create, update and delete brands of cars"),
+                new Tag(DescriptionVariables.CAR,
+                        "Controller used to get, create, update and delete cars")
+        );
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()

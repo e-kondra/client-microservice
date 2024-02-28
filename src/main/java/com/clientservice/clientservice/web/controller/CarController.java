@@ -2,8 +2,8 @@ package com.clientservice.clientservice.web.controller;
 
 import com.clientservice.clientservice.business.service.CarService;
 import com.clientservice.clientservice.model.Car;
-import com.clientservice.clientservice.model.CompanyDetails;
 import com.clientservice.clientservice.swagger.DescriptionVariables;
+import com.clientservice.clientservice.swagger.HTMLResponseMessages;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,11 +43,9 @@ public class CarController {
             notes = "Returns the entire list of cars",
             response = Car.class, responseContainer = "List")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = Car.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<List<Car>> findAllCars() {
         log.info("Retrieve list of cars");
         List<Car> carList = carService.findAllCars();
@@ -62,11 +59,9 @@ public class CarController {
             notes = "Returns the entire list of client's cars",
             response = Car.class, responseContainer = "List")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = Car.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<List<Car>> findAllCarsByClientId(@ApiParam(value = "id of the client", required = true)
                                                                @NonNull @PathVariable Long id) {
         log.info("Retrieve list of clients cars");
@@ -81,11 +76,10 @@ public class CarController {
             notes = "Provide an id to search specific car in database",
             response = Car.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<Car> findCarById(@ApiParam(value = "id of the car", required = true)
                                                  @NonNull @PathVariable Long id) {
         log.info("Find car by passing ID of car, where car ID is :{} ", id);
@@ -100,12 +94,10 @@ public class CarController {
             notes = "If provided valid car, saves it",
             response = Car.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The car is successfully saved"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 201, message = HTMLResponseMessages.HTTP_201),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Car> saveCar(@Valid @RequestBody Car car, BindingResult bindingResult) throws Exception {
         log.info("Create new Car by passing : {}", car);
@@ -123,12 +115,10 @@ public class CarController {
             notes = "Updates the car if provided id exists",
             response = Car.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The car is successfully updated"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Car> updateCarById(@ApiParam(value = "id of the car", required = true)
                                                        @NonNull @PathVariable Long id,
@@ -148,11 +138,9 @@ public class CarController {
             notes = "Deletes the car if provided id exists",
             response = Car.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The car is successfully deleted"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 204, message = HTMLResponseMessages.HTTP_204_WITHOUT_DATA),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteCarById(@ApiParam(value = "The id of the car", required = true)
                                                    @NonNull @PathVariable Long id) {
@@ -166,22 +154,4 @@ public class CarController {
         log.debug("Car with id {} is deleted: {}", id, car);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

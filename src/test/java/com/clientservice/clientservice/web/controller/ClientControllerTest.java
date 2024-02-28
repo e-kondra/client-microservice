@@ -1,9 +1,6 @@
 package com.clientservice.clientservice.web.controller;
 
-import com.clientservice.clientservice.business.service.ClientService;
-import com.clientservice.clientservice.business.service.impl.CarServiceImpl;
 import com.clientservice.clientservice.business.service.impl.ClientServiceImpl;
-import com.clientservice.clientservice.model.Car;
 import com.clientservice.clientservice.model.Client;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -11,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -23,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

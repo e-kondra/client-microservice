@@ -42,11 +42,9 @@ public class ClientController {
             notes = "Returns the entire list of clients",
             response = Client.class, responseContainer = "List")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = Client.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<List<Client>> findAllClients() {
         log.info("Retrieve list of Clients");
         List<Client> clientList = clientService.findAllClients();
@@ -61,11 +59,9 @@ public class ClientController {
            notes = "Returns the entire list of active clients",
            response = Client.class, responseContainer = "List")
     @ApiResponses(value = {
-           @ApiResponse(code = 200, message = "The request has succeeded", response = Client.class, responseContainer = "List"),
-           @ApiResponse(code = 401, message = "The request requires user authentication"),
-           @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-           @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-           @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     public ResponseEntity<List<Client>> findAllActiveClients() {
        log.info("Retrieve list of active clients");
        List<Client> clientList = clientService.findAllActiveClients();
@@ -99,12 +95,10 @@ public class ClientController {
             notes = "If provided valid client saves it",
             response = Client.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The client is successfully saved"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 201, message = HTMLResponseMessages.HTTP_201),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Client> saveClient(@Valid @RequestBody Client client, BindingResult bindingResult) throws Exception {
         log.info("Create new client by passing : {}", client);
@@ -122,12 +116,10 @@ public class ClientController {
             notes = "Deactivates the client if provided id exists",
             response = Client.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The client is successfully deactivated"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> deactivateClientById(@ApiParam(value = "The id of the client", required = true)
                                                      @NonNull @PathVariable Long id) {
@@ -147,12 +139,10 @@ public class ClientController {
             notes = "Activates the client if provided id exists",
             response = Client.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The client is successfully activated"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> activateClientById(@ApiParam(value = "The id of the client", required = true)
                                                    @NonNull @PathVariable Long id) {
@@ -172,12 +162,10 @@ public class ClientController {
             notes = "Updates the client if provided id exists",
             response = Client.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The client is successfully updated"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
+            @ApiResponse(code = 200, message = HTMLResponseMessages.HTTP_200),
+            @ApiResponse(code = 400, message = HTMLResponseMessages.HTTP_400),
+            @ApiResponse(code = 404, message = HTMLResponseMessages.HTTP_404),
+            @ApiResponse(code = 500, message = HTMLResponseMessages.HTTP_500)})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Client> updateClientById(@ApiParam(value = "The id of the client", required = true)
                                                  @NonNull @PathVariable Long id,
