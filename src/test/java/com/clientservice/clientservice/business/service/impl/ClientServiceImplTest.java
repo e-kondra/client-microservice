@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ class ClientServiceImplTest {
     ClientRepository clientRepository;
     @InjectMocks
     ClientServiceImpl clientService;
-    @Mock
+    @Autowired
     ClientMapStructMapper clientMapper;
 
     ClientDAO clientDAO;
@@ -180,7 +181,4 @@ class ClientServiceImplTest {
         verify(clientRepository, times(1)).save(clientDAO);
     }
 
-    @Test
-    void hasNoMatch() {
-    }
 }

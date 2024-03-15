@@ -11,10 +11,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "car")
@@ -41,5 +43,45 @@ public class CarDAO {
 
     public CarDAO(Long carId) {
         this.id = carId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public BrandDAO getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(BrandDAO brandId) {
+        this.brandId = brandId;
+    }
+
+    public ClientDAO getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(ClientDAO clientId) {
+        this.clientId = clientId;
     }
 }

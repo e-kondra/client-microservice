@@ -23,7 +23,11 @@ public class BrandServiceImpl implements BrandService {
     BrandRepository brandRepository;
     @Autowired
     BrandMapStructMapper brandMapper;
-
+//
+//    @Autowired
+//    public void setBrandMapper(BrandMapStructMapper brandMapper) {
+//        this.brandMapper = brandMapper;
+//    }
 
     @Override
     public List<Brand> findAllBrands() {
